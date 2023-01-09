@@ -1,0 +1,57 @@
+.profile-content {
+  width: 510px;
+  height: 490px;
+
+  &__avatar {
+    margin: 0 auto;
+    height: 130px;
+    width: 130px;
+    background: #EFEFEF;
+    border-radius: 50%;
+    position: relative;
+
+    &:hover {
+      &::after {
+        content: 'Поменять\0aаватар';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFFFFF;
+        font-size: 13px;
+        line-height: 14px;
+        white-space: pre;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba($color: #000000, $alpha: 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__name {
+    margin: 20px 0 60px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+
+  &__field {
+    $this: &;
+
+    flex: 1;
+
+    + #{$this} {
+      border-top: 1px solid #EAEAEA;
+    }
+  }
+}

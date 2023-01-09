@@ -1,0 +1,11 @@
+<div class="chat-header{{#if className}} {{ className }}{{/if}}">
+  <div class="chat-header__avatar"></div>
+  <div class="chat-header__name">{{ name }}</div>
+  <div class="chat-header__menu-button" page="chat-menu-user">&vellip;</div>
+  {{#if menu}}
+    {{> Menu className="chat-header__menu" menu=(chat-header-menu) }}
+  {{/if}}
+</div>
+{{#if useradd}}
+  {{> UserAdd }}
+{{/if}}

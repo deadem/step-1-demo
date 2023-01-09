@@ -3,13 +3,14 @@
 
   &__element {
     border: none;
+    padding: 0;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     font: inherit;
 
-    &:focus-visible {
-      outline: none;
+    &--align-right {
+      text-align: right;
     }
   }
 }

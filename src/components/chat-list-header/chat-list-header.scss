@@ -1,0 +1,25 @@
+.chat-list-header {
+  height: 100px;
+  padding: 20px 10px 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+
+  &__profile {
+    cursor: pointer;
+    color: #999999;
+    display: flex;
+    align-items: center;
+  }
+
+  &__profile-icon {
+    width: 12px;
+    height: 12px;
+    background-image: url(../../assets/arrow_right_simple.svg);
+    background-size: 12px  12px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

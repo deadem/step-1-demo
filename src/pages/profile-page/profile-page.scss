@@ -1,0 +1,50 @@
+.profile-page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  &__left {
+    background: #FBFBFB;
+    width: 64px;
+    border-right: 1px solid #EAEAEA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__left-button {
+    background: #3369F3;
+    background-image: url(../../assets/arrow_left_icon.svg);
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+  }
+
+  &__center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__footer {
+    height: 110px;
+  }
+
+  &__field {
+    $this: &;
+
+    + #{$this} {
+      border-top: 1px solid #EAEAEA;
+    }
+  }
+
+  &__button-save {
+    width: 280px;
+  }
+}

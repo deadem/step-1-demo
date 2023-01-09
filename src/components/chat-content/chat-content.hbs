@@ -1,0 +1,7 @@
+<div class="chat-content{{#if className}} {{ className }}{{/if}}">
+  {{> ChatDay date=(chat-content "date") }}
+  {{> ChatMessage className="chat-content__message" message=(chat-content "message") }}
+  {{> ChatMessageImage className="chat-content__message" message=(chat-content "image-message")}}
+  {{> ChatMessageMy className="chat-content__message" message=(chat-content "my-message") }}
+  {{> ChatMessage className="chat-content__message" message=(chat-content "error-message") }}
+</div>

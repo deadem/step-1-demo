@@ -1,0 +1,12 @@
+<div class="chat-page">
+  {{#> ChatList className="chat-page__list" }}
+    {{> ChatListHeader }}
+    {{#each (chat-page-list)}}
+      {{> ChatItem }}
+    {{/each}}
+  {{/ ChatList }}
+
+  {{> ChatHeader className="chat-page__header" name="Вадим" }}
+  {{> ChatContent className="chat-page__content" }}
+  {{> ChatFooter className="chat-page__footer" }}
+</div>

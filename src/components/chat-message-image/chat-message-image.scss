@@ -1,0 +1,22 @@
+.chat-message-image {
+  display: inline-block;
+  position: relative;
+  align-self: flex-start;
+
+  &__image {
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+  }
+
+  &__time {
+    font-size: 9px;
+    line-height: 9px;
+    padding: 2px 7px;
+    color: #fff;
+    background: rgba(82, 82, 82, 0.5);
+    border-radius: 30px;
+    position: absolute;
+    right: 11px;
+    bottom: 11px;
+  }
+}

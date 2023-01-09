@@ -1,17 +1,14 @@
 .login-page {
-  width: 340px;
-  background-color: #fff;
-  box-shadow: 0 0 6px #00000024;
-  border-radius: 10px;
-  padding: 40px;
+  width: 280px;
+  height: 390px;
   display: flex;
   flex-direction: column;
-  height: 500px;
-  max-height: 100%;
-  box-sizing: border-box;
 
   &__content {
     flex: 1;
   }
 
+  &__input {
+    margin-top: 16px;
+  }
 }

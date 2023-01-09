@@ -1,0 +1,8 @@
+<div class="profile-field{{#if className}} {{className}}{{/if}}">
+  <div class="profile-field__name">{{name}}</div>
+  {{#if edit}}
+    {{> Input value=value}}
+  {{else}}
+    <div class="profile-field__value">{{value}}</div>
+  {{/if}}
+</div>

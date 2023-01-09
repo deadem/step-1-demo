@@ -1,3 +1,5 @@
+@import './assets/fonts';
+
 html, body {
   // Развернём html и body на всю высоту экрана
   padding: 0;
@@ -6,12 +8,25 @@ html, body {
 }
 
 body {
-  font-family: "Segoe UI","Arial";
-  font-size: 15px;
-  line-height: 22px;
+  font-family: "Inter", "Segoe UI","Arial";
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
   background-color: #fff;
   color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+a {
+  color: #3369F3;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+*:focus-visible {
+  outline: none;
 }

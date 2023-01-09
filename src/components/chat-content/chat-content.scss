@@ -1,0 +1,14 @@
+.chat-content {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+
+  &__message {
+    $this: &;
+
+    + #{$this} {
+      margin-top: 10px;
+    }
+  }
+}
