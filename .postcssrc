@@ -1,0 +1,6 @@
+{
+  "plugins": {
+    "stylelint": true,
+    "postcss-fail-on-warn": true
+  }
+}
