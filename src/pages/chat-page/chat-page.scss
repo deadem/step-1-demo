@@ -5,10 +5,10 @@
   width: 100%;
   display: grid;
   grid-template:
-    "a b" 54px
-    "a c" 1fr
-    "a d" 54px
-      / 310px 1fr;
+    'a b' 54px
+    'a c' 1fr
+    'a d' 54px
+    / 310px 1fr;
 
   &__list {
     grid-area: a;

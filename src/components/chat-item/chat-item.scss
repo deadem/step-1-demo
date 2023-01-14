@@ -13,10 +13,9 @@
     width: 100%;
     display: grid;
     grid-template:
-      "a n n" 13px
-      "a m u" 1fr
+      'a n n' 13px
+      'a m u' 1fr
       / 47px 1fr 50px;
-
     gap: 0 10px;
     padding: 12px 10px;
     box-sizing: border-box;
