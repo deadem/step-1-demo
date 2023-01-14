@@ -18,17 +18,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html --port 3000 --no-cache",
     "build": "rimraf ./dist/* && parcel build src/index.html --no-cache",
-    "start": "node ./server.js"
+    "start": "node ./server.js",
+    "lint": "stylelint \"src/**/*.scss\""
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",
     "@parcel/validator-eslint": "^2.8.2",
     "handlebars": "^4.7.7",
     "parcel": "^2.8.0",
-    "postcss-fail-on-warn": "^0.2.1",
     "rimraf": "^3.0.2",
     "stylelint": "^14.16.1",
-    "stylelint-config-recommended": "^9.0.0"
+    "stylelint-config-standard-scss": "^6.1.0"
   },
   "dependencies": {
     "express": "^4.18.2"

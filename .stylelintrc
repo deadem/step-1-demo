@@ -1,3 +1,7 @@
 {
-  "extends": "stylelint-config-recommended"
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "string-quotes": "single",
+    "selector-list-comma-newline-after": null
+  }
 }

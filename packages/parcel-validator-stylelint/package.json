@@ -1,0 +1,13 @@
+{
+  "name": "parcel-validator-stylelint",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "deadem",
+    "email" : "deadem@gmail.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "parcel": "2.x"
+  }
+}
