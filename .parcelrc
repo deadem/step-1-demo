@@ -3,5 +3,10 @@
   "transformers": {
     "*.hbs": ["parcel-transformer-handlebars-precompile"],
     "*.scss": ["@parcel/transformer-sass"]
+  },
+  "validators": {
+    "*.{js,mjs,jsm,jsx,es6,cjs,ts,tsx}": [
+      "@parcel/validator-eslint"
+    ]
   }
 }
