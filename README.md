@@ -19,3 +19,7 @@ https://step-1-demo.onrender.com/
 - Страница профиля (cсылка на профиль в шапке чата)
 - Изменить данные в профиле
 - Изменить пароль в профиле
+
+## Линтеры
+
+Подключены [stylelint](https://stylelint.io/) и [eslint](https://eslint.org/)
