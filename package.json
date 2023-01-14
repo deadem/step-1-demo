@@ -19,7 +19,9 @@
     "dev": "parcel src/index.html --port 3000 --no-cache",
     "build": "rimraf ./dist/* && parcel build src/index.html --no-cache",
     "start": "node ./server.js",
-    "lint": "stylelint \"src/**/*.scss\""
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "eslint": "eslint \"src/**/*.[jt]s\"",
+    "lint": "npm run stylelint && npm run eslint"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",
