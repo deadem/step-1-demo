@@ -7,8 +7,8 @@ on:
 
 
 jobs:
-  sprint_1:
-    if: ${{github.head_ref == 'sprint_1'}}
+  sprint_111:
+    if: ${{github.head_ref == 'sprint_111'}}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,7 +24,7 @@ jobs:
       run: exit 1
       if: ${{github.event.repository.private}}
     - name: Get testing lib
-      run: set -eu && git clone https://github.com/Yandex-Practicum/tests-second-floor.git
+      run: set -eu && git clone https://github.com/deadem/tests-second-floor.git && git checkout check-routing-errors
     - name: Check dist and node_modules in .gitignore
       run: bash tests-second-floor/sprint_1/check_gitignore.sh
     - name: Check npm run start existence
@@ -35,7 +35,7 @@ jobs:
       run: bash tests-second-floor/sprint_1/check_port.sh
     - name: Check routing
       run: node tests-second-floor/sprint_1/check_routing.js
-      
+
   sprint_2:
     if: ${{github.head_ref == 'sprint_2'}}
     runs-on: ubuntu-latest
@@ -73,7 +73,7 @@ jobs:
       run: node tests-second-floor/sprint_2/check_eslint.js
     - name: Check stylelint
       run: node tests-second-floor/sprint_2/check_stylelint.js
-      
+
   sprint_3:
     if: ${{github.head_ref == 'sprint_3'}}
     runs-on: ubuntu-latest
@@ -94,7 +94,7 @@ jobs:
       run: set -eu && git clone https://github.com/Yandex-Practicum/tests-second-floor.git
     - name: Run the tests
       run: bash tests-second-floor/sprint_3/run.sh
-      
+
   sprint_4:
     if: ${{github.head_ref == 'sprint_4'}}
     runs-on: ubuntu-latest
