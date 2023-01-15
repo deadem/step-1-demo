@@ -4,7 +4,8 @@
     "*.hbs": ["parcel-transformer-handlebars-precompile"]
   },
   "validators": {
-    "*.{js,mjs,jsm,jsx,es6,cjs,ts,tsx}": [ "@parcel/validator-eslint" ],
+    "*.{ts,tsx}": [ "@parcel/validator-typescript", "@parcel/validator-eslint" ],
+    "*.{js,mjs,jsm,jsx,es6,cjs}": [ "@parcel/validator-eslint" ],
     "*.scss": [ "parcel-validator-stylelint" ]
   }
 }

@@ -26,6 +26,9 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",
     "@parcel/validator-eslint": "^2.8.2",
+    "@parcel/validator-typescript": "^2.8.2",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "handlebars": "^4.7.7",
     "parcel": "^2.8.0",
     "rimraf": "^3.0.2",
