@@ -3,14 +3,13 @@ import { Route } from './Route';
 
 export type Middleware = (router: Router, next: () => void) => void;
 
-class Router {
+export class Router {
   private routes: Route<Middleware>[] = [];
   private currentRoute: Route<Middleware> | null = null;
-  private readonly history = window.history;
   private readonly rootMountPoint: Element;
 
-  constructor(mountPoint: Element = document.body) {
-    this.rootMountPoint = mountPoint;
+  public constructor(mountPoint?: Element) {
+    this.rootMountPoint = mountPoint || document.body;
   }
 
   public use<T extends Constructor<Block<object>>>(
@@ -31,7 +30,7 @@ class Router {
   }
 
   public go(path: string) {
-    this.history.pushState({}, '', path);
+    window.history.pushState({}, '', path);
     this.renderPage(path);
   }
 
@@ -60,6 +59,3 @@ class Router {
     }, next)();
   }
 }
-
-const router = new Router();
-export { router as Router};

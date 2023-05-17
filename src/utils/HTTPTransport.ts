@@ -111,14 +111,3 @@ export class HTTPTransport {
     });
   }
 }
-
-/*
-Модуль пока что в проекте не используется, тут в комментарии хоть какой-то пример, как его вызывать:
-
-const req = new HTTPTransport();
-req.get('https://ya-praktikum.tech/api/v2/auth/user', { data: { q: 'te?1=&st' } }).then(e => {
-  console.log(e);
-}).catch(e => {
-  console.error(e);
-});
-*/

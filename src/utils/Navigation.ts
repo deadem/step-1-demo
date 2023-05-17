@@ -1,6 +1,7 @@
 import { Block } from './Block';
 import { Router } from './Router';
-export { Router };
+
+export const router = new Router();
 
 export const enum Page {
   chat = '/messenger',
@@ -10,7 +11,7 @@ export const enum Page {
 }
 
 function navigate(page: Page) {
-  Router.go(page);
+  router.go(page);
 }
 
 export const NavigateTo = {
