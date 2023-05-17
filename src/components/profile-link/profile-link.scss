@@ -10,6 +10,7 @@
   &__name {
     color: $link-color;
     text-decoration: none;
+    cursor: pointer;
 
     &--red {
       color: $text-red;

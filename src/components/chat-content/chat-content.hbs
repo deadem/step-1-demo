@@ -1,7 +1,7 @@
-<div class="chat-content{{#if className}} {{ className }}{{/if}}">
+<div class="chat-content{{#if className}} {{ className }}{{/if}}" ref="page">
   {{{ ChatDay date=date }}}
-  {{{ ChatMessage className="chat-content__message" message=message }}}
-  {{{ ChatMessageImage className="chat-content__message" message=imageMessage }}}
-  {{{ ChatMessageMy className="chat-content__message" message=myMessage }}}
-  {{{ ChatMessage className="chat-content__message" message=errorMessage }}}
+  {{#each store.messages }}
+    {{{ ChatMessage my=(equals userId ../store.userId) className="chat-content__message"
+      message=message time=time textTime=textTime }}}
+  {{/each}}
 </div>

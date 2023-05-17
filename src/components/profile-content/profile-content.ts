@@ -2,13 +2,11 @@ import './profile-content.scss';
 import template from './profile-content.hbs?raw';
 import { Block } from '../../utils/Block';
 import { ProfileField } from '../index';
-import * as Validation from '../../utils/Validation';
+import { withStore, WithStoreProps } from '../../store/Store';
+import { withValidation, WithValidationProps } from '../../utils/Validation';
 
-interface Props {
-  password: boolean;
+interface Props extends WithStoreProps, WithValidationProps {
   upload?: boolean;
-  validate?: typeof Validation;
-  onAddAvatar(): void;
 }
 
 type Refs = {
@@ -24,6 +22,23 @@ type Refs = {
   upload: HTMLElement;
 };
 
+export type ProfileContentFields = {
+  email: string | undefined;
+  login: string | undefined;
+  name: string | undefined;
+  surname: string | undefined;
+  nick: string | undefined;
+  phone: string | undefined;
+};
+
+export type ProfileContentPassword = {
+  password: string | undefined;
+  passwordNew: string | undefined;
+  passwordNewCopy: string | undefined;
+};
+
+@withStore
+@withValidation
 export class ProfileContent extends Block<Props, Refs> {
   static componentName = 'ProfileContent';
   protected template = template;
@@ -33,24 +48,34 @@ export class ProfileContent extends Block<Props, Refs> {
     }
   };
 
-  constructor(props: Props) {
-    super({
-      ...props,
-      // свойства шаблона
-      validate: Validation,
-      onAddAvatar: () => { this.setProps({ upload: false }); },
-    });
+  protected override customProps() {
+    return {
+      ...super.customProps(),
+      onAddAvatar: this.updateAvatar.bind(this),
+      validateNewPasswordCopy: (value: string) => {
+        if (value != (this.refs.passwordNew.value() || '')) {
+          return 'Пароли не совпадают';
+        }
+      }
+    };
   }
 
-  public value() {
-    if (this.props.password) {
-      return {
-        password: this.refs.password.value(),
-        passwordNew: this.refs.passwordNew.value(),
-        passwordNewCopy: this.refs.passwordNewCopy.value(),
-      };
-    }
+  private updateAvatar(file: File) {
+    return this.props.store.reducers.updateAvatar(file)
+      .then(() => {
+        this.setProps({ upload: false });
+      });
+  }
 
+  public passwordFields(): ProfileContentPassword {
+    return {
+      password: this.refs.password.value(),
+      passwordNew: this.refs.passwordNew.value(),
+      passwordNewCopy: this.refs.passwordNewCopy.value(),
+    };
+  }
+
+  public profileFields(): ProfileContentFields {
     return {
       email: this.refs.email.value(),
       login: this.refs.login.value(),

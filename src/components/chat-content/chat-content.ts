@@ -1,16 +1,22 @@
 import './chat-content.scss';
 import template from './chat-content.hbs?raw';
 import { Block } from '../../utils/Block';
-import { message } from './chat-content-stub';
+import { withStore, WithStoreProps } from '../../store/Store';
 
-interface Props {
-}
+type Props = WithStoreProps & {
+  //
+};
 
-export class ChatContent extends Block<Props> {
+type Refs = {
+  page: HTMLDivElement;
+};
+
+@withStore
+export class ChatContent extends Block<Props, Refs> {
   static componentName = 'ChatContent';
   protected template = template;
 
-  constructor() {
-    super(message);
+  protected override componentDidMount() {
+    this.refs.page.scrollTop = 1000000;
   }
 }

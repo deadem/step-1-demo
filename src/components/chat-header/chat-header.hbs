@@ -5,7 +5,7 @@
   {{#if menu}}
     {{{ Menu className="chat-header__menu" menu=menu onClick=onClickMenu }}}
   {{/if}}
-  {{#if useradd}}
-    {{{ UserAdd onSubmit=onUserAdd }}}
+  {{#if dialogTitle}}
+    {{{ DialogInput onSubmit=onSubmit title=dialogTitle inputTitle="Логин" actionText=text }}}
   {{/if}}
 </div>

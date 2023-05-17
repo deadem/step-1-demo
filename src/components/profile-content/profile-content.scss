@@ -2,13 +2,15 @@
 
 .profile-content {
   width: 510px;
-  height: 490px;
 
   &__avatar {
     margin: 0 auto;
     height: 130px;
     width: 130px;
     background: $gray-light-color;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     border-radius: 50%;
     position: relative;
 

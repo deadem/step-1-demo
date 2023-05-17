@@ -1,10 +1,14 @@
 import './profile-page.scss';
 import template from './profile-page.hbs?raw';
 import { Block } from '../../utils/Block';
-import { NavigateTo } from '../../utils/Navigation';
-import { Button, ProfileContent, ProfileLink } from '../../components';
+import { NavigateTo, withNavigation, WithNavigationProps } from '../../utils/Navigation';
+import { Button, ErrorLine, ProfileContent, ProfileLink } from '../../components';
+import { isAllPropsDefined } from '../../utils/Validation';
+import { withStore, WithStoreProps } from '../../store/Store';
 
-interface Props {
+interface Props extends WithStoreProps, WithNavigationProps {
+  edit?: boolean;
+  password?: boolean;
 }
 
 type Refs = {
@@ -13,9 +17,13 @@ type Refs = {
   edit: ProfileLink;
   editPassword: ProfileLink;
   save: Button;
+  form: HTMLElement;
   fields: ProfileContent;
+  errorLine: ErrorLine;
 }
 
+@withStore
+@withNavigation
 export class ProfilePage extends Block<Props, Refs> {
   static componentName = 'ProfilePage';
   protected template = template;
@@ -23,11 +31,8 @@ export class ProfilePage extends Block<Props, Refs> {
     chatLink: {
       click: () => NavigateTo.chat(),
     },
-    exit: {
-      click: (e: Event) => {
-        e.preventDefault();
-        NavigateTo.login();
-      },
+    logout: {
+      click: this.logout.bind(this),
     },
     edit: {
       click: (e: Event) => {
@@ -41,18 +46,51 @@ export class ProfilePage extends Block<Props, Refs> {
         this.setProps({ edit: true, password: true });
       }
     },
-    save: {
-      click: () => this.save(),
-    }
+    form: {
+      'submit': this.save.bind(this)
+    },
   };
 
-  private save() {
-    const fields = this.refs.fields.value();
-    console.log(fields);
-    if (Object.values(fields).filter(value => !value).length) {
+  private logout() {
+    this.props.store.reducers.logout();
+  }
+
+  private save(e: Event) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (this.props.password) {
+      this.updatePassword();
       return;
     }
 
-    this.setProps({ edit: false, password: false });
+    this.updateProfile();
+  }
+
+  private updateProfile() {
+    const fields = this.refs.fields.profileFields();
+
+    if (!isAllPropsDefined(fields)) {
+      return;
+    }
+
+    this.props.store.reducers.updateProfile(fields).then(() => {
+      this.setProps({ edit: false, password: false });
+    }).catch(error => {
+      this.refs.errorLine.setProps({ error: error?.reason || 'Ошибка сохранения' });
+    });
+  }
+
+  private updatePassword() {
+    const fields = this.refs.fields.passwordFields();
+    if (!isAllPropsDefined(fields)) {
+      return;
+    }
+
+    this.props.store.reducers.updatePassword(fields.password, fields.passwordNew).then(() => {
+      this.setProps({ edit: false, password: false });
+    }).catch(error => {
+      this.refs.errorLine.setProps({ error: error?.reason || 'Ошибка сохранения' });
+    });
   }
 }

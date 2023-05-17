@@ -34,6 +34,16 @@
     justify-content: center;
   }
 
+  &__content-fields {
+    height: 490px;
+  }
+
+  &__error {
+    margin-top: 24px;
+    font: $font-regular;
+    text-align: center;
+  }
+
   &__footer {
     height: 110px;
   }

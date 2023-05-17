@@ -11,8 +11,8 @@ https://step-1-demo.onrender.com/
 
 1. `npm i` — установка зависимостей проекта.
 2. `npm run start` — команда, запускающая проект.
-2. `npm run dev` — запуск отладочной версии.
-3. Проект работает на `http://localhost:3000`.
+3. `npm run dev` — запуск отладочной версии.
+4. Проект работает на `http://localhost:3000`.
 
 ## Линтинг
 
@@ -47,3 +47,6 @@ https://step-1-demo.onrender.com/
 [sass/scss](https://sass-lang.com/)
 [eslint](https://eslint.org/)
 [stylelint](https://stylelint.io/)
+
+## "Тут всё не так", "ничего не работает", "а вот тут ошибка"
+Откройте issue, разберёмся.

@@ -1,45 +1,50 @@
-import { EventBus } from './EventBus';
+import { Block } from './Block';
+import { Router } from './Router';
+
+export const router = new Router();
 
 export const enum Page {
-  chat,
-  login,
-  registration,
-  profile,
+  chat = '/messenger',
+  login = '/',
+  registration = '/sign-up',
+  profile = '/settings',
 }
 
-type Events = {
-  'page': [ Page ]
+function navigate(page: Page) {
+  router.go(page);
+}
+
+export const NavigateTo = {
+  chat() {
+    navigate(Page.chat);
+  },
+  login() {
+    navigate(Page.login);
+  },
+  registration() {
+    navigate(Page.registration);
+  },
+  profile() {
+    navigate(Page.profile);
+  }
 };
 
-export class Navigation {
-  private static events: EventBus<Events>;
-
-  static eventBus() {
-    if (!this.events) {
-      this.events = new EventBus<Events>();
-    }
-    return this.events;
-  }
+export type WithNavigationProps = {
+  navigateTo: typeof NavigateTo;
 }
 
-export class NavigateTo {
-  static chat() {
-    this.navigate(Page.chat);
-  }
+export function withNavigation<Props extends WithNavigationProps, T extends Constructor<Block<Props>>>(constructor: T): T {
+  return class extends constructor {
+    protected template!: string;
 
-  static login() {
-    this.navigate(Page.login);
-  }
-
-  static registation() {
-    this.navigate(Page.registration);
-  }
-
-  static profile() {
-    this.navigate(Page.profile);
-  }
-
-  private static navigate(page: Page) {
-    Navigation.eventBus().emit('page', page);
-  }
+    // Вынуждены использовать any[], см. ts(2545)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    constructor(...args: any[]) {
+      const [ props ] = args;
+      super({
+        ...props,
+        navigateTo: NavigateTo
+      } as WithNavigationProps);
+    }
+  };
 }

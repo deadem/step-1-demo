@@ -43,6 +43,10 @@
   &__date {
     float: right;
     font: $font-nano;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__message {

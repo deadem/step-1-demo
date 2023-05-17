@@ -2,9 +2,12 @@
   <form class="upload-file" ref="form">
     <div class="upload-file__title">Загрузите файл</div>
     <span class="upload-file__link">
-      <input class="upload-file__element" type='file' name='filename'/>
+      <input class="upload-file__element" type='file' name='filename' ref="file"/>
       <span class="upload-file__link-text">Выбрать файл на компьютере</span>
     </span>
+    <div class="upload-file__error">
+      {{{ ErrorLine ref="errorLine" }}}
+    </div>
     {{{ Button text="Поменять" page="profile" }}}
   </form>
 {{/DialogModal }}

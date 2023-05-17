@@ -1,12 +1,6 @@
 <div class="chat-page">
-  {{# ChatList className="chat-page__list" }}
-    {{{ ChatListHeader }}}
-    {{#each chatList}}
-      {{{ ChatItem current=current avatar=avatar name=name date=date message=message unread=unread }}}
-    {{/each}}
-  {{/ ChatList }}
-
+  {{{ ChatList className="chat-page__list" onChange=onChangeChat }}}
   {{{ ChatHeader className="chat-page__header" name="Вадим" }}}
-  {{{ ChatContent className="chat-page__content" }}}
-  {{{ ChatFooter className="chat-page__footer" }}}
+  {{{ ChatContent className="chat-page__content" controller=controller }}}
+  {{{ ChatFooter className="chat-page__footer" controller=controller }}}
 </div>

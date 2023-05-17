@@ -1,8 +1,9 @@
-import { registerComponent, registerPartial } from './utils/Handlebars';
+import { registerComponent, registerHelpers, registerPartial } from './utils/Handlebars';
 import * as Components from './components';
 import * as Pages from './pages';
 import * as Partials from './partials';
-import { Navigation, Page, NavigateTo } from './utils/Navigation';
+import { router, Page } from './utils/Navigation';
+import { authorized, checkIndex, tryToAuth } from './utils/Middleware';
 
 document.addEventListener('DOMContentLoaded', () => {
   Object.entries(Components).forEach(([, component ]) => {
@@ -13,20 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     registerPartial(name, component);
   });
 
-  const pages = {
-    [Page.chat]: Pages.ChatPage,
-    [Page.login]: Pages.LoginPage,
-    [Page.registration]: Pages.RegistrationPage,
-    [Page.profile]: Pages.ProfilePage,
-  };
+  registerHelpers();
 
-  Navigation.eventBus().on('page', (page: Page) => {
-    const component = pages[page];
-    const content = new component({});
+  router
+    .use(Page.chat, 'Чаты', Pages.ChatPage, [ tryToAuth, authorized ])
+    .use(Page.login, 'Авторизация', Pages.LoginPage, [ tryToAuth, checkIndex ])
+    .use(Page.registration, 'Регистрация', Pages.RegistrationPage)
+    .use(Page.profile, 'Профиль', Pages.ProfilePage, [ tryToAuth, authorized ])
+    .use(/.?/, 'Error', Pages.ErrorPage); // Всё, что не заматчилось, отображаем как ошибку
 
-    document.body.innerHTML = '';
-    document.body.append(content.element());
-  });
-
-  NavigateTo.login();
+  router.start();
 });

@@ -1,6 +1,7 @@
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-type DataObject = { [keys in string | number ]: string | number | undefined };
-type Data = DataObject | FormData | string | number | undefined;
+type SimpleDataObject = { [keys in string | number ]: string | number | undefined };
+type DataObject = { [keys in string | number ]: string | number | undefined | DataObject[] } | string | number | undefined;
+type Data = DataObject | FormData;
 
 type Options = {
   headers?: { [key: string]: string },
@@ -30,42 +31,63 @@ function queryString(data: Record<string | number, string | number | undefined>)
 }
 
 export class HTTPTransport {
-  public get(url: string, { data, ...options }: Omit<Options, 'data'> & { data?: DataObject } = {}) {
+  private readonly prefix: string;
+
+  constructor(prefix = '') {
+    this.prefix = prefix;
+  }
+
+  public get<T = unknown>(urlPart: string, { data, ...options }: Omit<Options, 'data'> & { data?: SimpleDataObject } = {}) {
     if (data && Object.keys(data).length) {
       const queryPart = queryString(data);
       if (queryPart) {
-        url += '?' + queryPart;
+        urlPart += '?' + queryPart;
       }
     }
 
-    return this.request(url, 'GET', options);
+    return this.request<T>(urlPart, 'GET', options);
   }
 
-  public put(url: string, options: Options = {}) {
-    return this.request(url, 'PUT', options);
+  public put<T = unknown>(urlPart: string, options: Options = {}) {
+    return this.request<T>(urlPart, 'PUT', options);
   }
 
-  public post(url: string, options: Options = {}) {
-    return this.request(url, 'POST', options);
+  public post<T = unknown>(urlPart: string, options: Options = {}) {
+    return this.request<T>(urlPart, 'POST', options);
   }
 
-  public delete(url: string, options: Options = {}) {
-    return this.request(url, 'DELETE', options);
+  public delete<T = unknown>(urlPart: string, options: Options = {}) {
+    return this.request<T>(urlPart, 'DELETE', options);
   }
 
-  private request<Response>(url: string, method: Method, options: Options = {}): Promise<Response> {
+  private request<Response>(urlPart: string, method: Method, options: Options = {}): Promise<Response> {
     // 60 секунд умолчательный таймаут
     const { data, headers, signal, timeout = 60000, withCredentials = true, responseType = 'json' } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, `${this.prefix}${urlPart}`);
 
       if (signal) {
         signal.handler = () => { xhr.abort(); };
       }
 
-      xhr.onload = () => { resolve(xhr.response); };
+      xhr.onload = () => {
+        const status = xhr.status || 0;
+        if (status >= 200 && status < 300) {
+          resolve(xhr.response);
+        } else {
+          const message = {
+            '0': 'abort',
+            '100': 'Information',
+            '200': 'Ok',
+            '300': 'Redirect failed',
+            '400': 'Access error',
+            '500': 'Internal server error',
+          }[Math.floor(status / 100) * 100];
+          reject({ status, reason: xhr.response?.reason || message });
+        }
+      };
       xhr.onabort = () => reject({ reason: 'abort' });
       xhr.onerror = () => reject({ reason: 'network error' });
       xhr.ontimeout = () => reject({ reason: 'timeout' });
@@ -89,14 +111,3 @@ export class HTTPTransport {
     });
   }
 }
-
-/*
-Модуль пока что в проекте не используется, тут в комментарии хоть какой-то пример, как его вызывать:
-
-const req = new HTTPTransport();
-req.get('https://ya-praktikum.tech/api/v2/auth/user', { data: { q: 'te?1=&st' } }).then(e => {
-  console.log(e);
-}).catch(e => {
-  console.error(e);
-});
-*/

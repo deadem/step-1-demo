@@ -5,6 +5,7 @@
   box-shadow: $menu-shadow;
   border-radius: 12px;
   padding: 15px;
+  z-index: 1;
 
   &__item {
     $this: &;

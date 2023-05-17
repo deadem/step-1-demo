@@ -9,10 +9,21 @@
   align-self: flex-start;
   font: $chat-message-font;
 
+  &--my {
+    background: $chat-message-my-bgcolor;
+    padding: 11px;
+    border-radius: 12px 12px 0;
+    align-self: flex-end;
+  }
+
   &__text {
     padding: 0;
     margin: 10px 0 0;
     color: $chat-message-color;
+
+    &--my {
+      color: $chat-message-my-color;
+    }
   }
 
   &__text-end {
@@ -27,5 +38,9 @@
     position: absolute;
     right: 11px;
     bottom: 11px;
+
+    &--my {
+      color: $chat-message-my-time-color;
+    }
   }
 }

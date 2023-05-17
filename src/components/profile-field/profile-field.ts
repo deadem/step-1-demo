@@ -19,19 +19,19 @@ export class ProfileField extends Block<Props, Refs> {
   static componentName = 'ProfileField';
   protected template = template;
 
-  constructor(props: Props) {
-    super({
-      ...props,
+  protected override customProps() {
+    return {
+      ...super.customProps(),
       // В материалах курса вадидация должна запускаться по фокусу, но выглядит это странно - ещё ничего не ввели, но уже ошибка,
       // поэтому проверку по фокусу выключил
       // onFocus: () => this.validate(),
-      onBlur: () => this.validate(),
-    });
+      onBlur: this.validate.bind(this),
+    };
   }
 
   public value() {
     if (!this.validate()) {
-      return false;
+      return undefined;
     }
     return this.refs.input.value();
   }

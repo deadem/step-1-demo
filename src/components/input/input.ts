@@ -24,6 +24,10 @@ export class Input extends Block<Props, Refs> {
     }
   };
 
+  public focus() {
+    this.refs.input.focus();
+  }
+
   public value(): string {
     return this.refs.input.value;
   }

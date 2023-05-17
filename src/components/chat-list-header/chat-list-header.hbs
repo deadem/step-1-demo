@@ -2,5 +2,9 @@
   <div class="chat-list-header__profile" ref="profile">
     Профиль <div class="chat-list-header__profile-icon"></div>
   </div>
-  {{{ Search }}}
+  {{{ Button text="Добавить чат" ref="button" }}}
+
+  {{#if addChat}}
+    {{{ DialogInput onSubmit=onAddChat title="Добавить чат" inputTitle="Название" actionText="Добавить" }}}
+  {{/if}}
 </div>

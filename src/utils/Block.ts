@@ -27,6 +27,16 @@ export abstract class Block<Props extends object, Refs extends RefType = RefType
 
   constructor(props: Props) {
     this.props = props;
+    // Расширяем props набором свойств из customProps
+    Object.entries(this.customProps()).forEach(([ key, value ]) => {
+      this.props[key as keyof Props] = value;
+    });
+  }
+
+  // Метод для расширения набора свойств, вызывается после сборки конструктора.
+  // На момент вызова все основные свойства уже находятся в this.props
+  protected customProps(): Props {
+    return {} as Props;
   }
 
   // Обновить свойства. Передаваемые значения "мержатся" с уже существующими
@@ -40,6 +50,14 @@ export abstract class Block<Props extends object, Refs extends RefType = RefType
       this.render();
     }
     return this.domElement as Element;
+  }
+
+  // Разрушить компонент
+  public destroy() {
+    this.unmountComponent();
+    if (this.domElement) {
+      this.domElement.replaceWith(document.createElement('template'));
+    }
   }
 
   // Автоматически вызываемые методы компонента: componentDidMount, componentWillUnmount
@@ -94,7 +112,7 @@ export abstract class Block<Props extends object, Refs extends RefType = RefType
     }
   }
 
-  private render() {
+  protected render() {
     this.unmountComponent();
 
     const fragment = this.compile();

@@ -16,10 +16,12 @@
         ref="password" validate=validate.password }}}
       {{{ InputField className="registration-page__input" title="Пароль (ещё раз)" type="password" name="password_copy"
         ref="passwordCopy" validate=validatePasswordCopy }}}
+
+      {{{ ErrorLine className="registration-page__error" ref="errorLine" }}}
     </div>
     <div class="registration-page__footer">
       {{{ Button text="Зарегистрироваться" page="chat" }}}
-      {{{ Link text="Войти" page="login" onClick=navigateToLogin }}}
+      {{{ Link text="Войти" page="login" onClick=navigateTo.login }}}
     </div>
   </form>
 {{/ Dialog }}

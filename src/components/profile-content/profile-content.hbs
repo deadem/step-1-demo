@@ -1,26 +1,28 @@
 <div class="profile-content">
-  <div class="profile-content__avatar" ref="upload"></div>
+  <div class="profile-content__avatar"
+    {{#if store.avatar}}style="background-image: url({{store.resourcesPath}}{{store.avatar}}){{/if}}" ref="upload">
+  </div>
   {{#if upload}}{{{ UploadFile onSubmit=onAddAvatar }}}{{/if}}
   <div class="profile-content__name{{#if edit}} profile-content__name--hidden{{/if}}">Иван</div>
   {{#if password}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="password" title="Старый пароль" value="1234567"
+    {{{ ProfileField edit=edit className="profile-content__field" name="password" title="Старый пароль"
       type="password" alignRight=true validate=validate.password ref="password" }}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="password_new" title="Новый пароль" value="111222333"
+    {{{ ProfileField edit=edit className="profile-content__field" name="password_new" title="Новый пароль"
       type="password" alignRight=true validate=validate.password ref="passwordNew" }}}
     {{{ ProfileField edit=edit className="profile-content__field" name="password_new_copy" title="Повторите новый пароль"
-      value="111222333" type="password" alignRight=true validate=validateNewPasswordCopy ref="passwordNewCopy" }}}
+      type="password" alignRight=true validate=validateNewPasswordCopy ref="passwordNewCopy" }}}
   {{else}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="email" title="Почта" value="pochta@yandex.ru"
+    {{{ ProfileField edit=edit className="profile-content__field" name="email" title="Почта" value=store.email
       alignRight=edit validate=validate.email ref="email" }}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="login" title="Логин" value="ivanivanov" alignRight=edit
+    {{{ ProfileField edit=edit className="profile-content__field" name="login" title="Логин" value=store.login alignRight=edit
       validate=validate.login ref="login" }}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="first_name" title="Имя" value="Иван" alignRight=edit
+    {{{ ProfileField edit=edit className="profile-content__field" name="first_name" title="Имя" value=store.name alignRight=edit
       validate=validate.name ref="name" }}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="second_name" title="Фамилия" value="Иванов" alignRight=edit
+    {{{ ProfileField edit=edit className="profile-content__field" name="second_name" title="Фамилия" value=store.surname alignRight=edit
       validate=validate.surname ref="surname" }}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="nick" title="Имя в чате" value="Иван" alignRight=edit
-      validate=validate.nickname ref="nick" }}}
-    {{{ ProfileField edit=edit className="profile-content__field" name="phone" title="Телефон" value="+79099673030" alignRight=edit
+    {{{ ProfileField edit=edit className="profile-content__field" name="nick" title="Имя в чате" value=store.nick alignRight=edit
+      validate=validate.nick ref="nick" }}}
+    {{{ ProfileField edit=edit className="profile-content__field" name="phone" title="Телефон" value=store.phone alignRight=edit
       validate=validate.phone ref="phone" }}}
   {{/if}}
 </div>

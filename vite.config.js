@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import rewritePlugin from './http-rewrite/vite-rewrite-plugin';
 
 // eslint-disable-next-line no-undef
 const dirname = __dirname;
 
 export default defineConfig({
   plugins: [
+    rewritePlugin(),
     checker({
       typescript: true,
       eslint: {

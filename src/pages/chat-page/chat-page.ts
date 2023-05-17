@@ -1,16 +1,21 @@
 import './chat-page.scss';
 import template from './chat-page.hbs?raw';
 import { Block } from '../../utils/Block';
-import { chatList } from './chat-page-stub';
+import { withStore, WithStoreProps } from '../../store/Store';
 
-interface Props {
+interface Props extends WithStoreProps {
 }
 
+@withStore
 export class ChatPage extends Block<Props> {
   static componentName = 'ChatPage';
   protected template = template;
 
-  constructor() {
-    super({ chatList });
+  public override destroy() {
+    this.props.store.reducers.destroyChat();
+  }
+
+  protected override componentDidMount(): void {
+    this.props.store.reducers.updateChatList();
   }
 }

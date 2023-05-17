@@ -3,18 +3,18 @@ import plus from '../../assets/plus_icon.svg';
 import cross from '../../assets/cross_icon.svg';
 import template from './chat-header.hbs?raw';
 import { Block } from '../../utils/Block';
+import { withStore, WithStoreProps } from '../../store/Store';
 
-interface Props {
+type Props = WithStoreProps & {
+  dialogTitle?: string;
   menu?: { icon: string; text: string; }[] | undefined;
-  onClickMenu(id: number): void;
-  onUserAdd(): void;
-  useradd?: boolean;
-}
+};
 
 type Refs = {
   button: HTMLElement;
-}
+};
 
+@withStore
 export class ChatHeader extends Block<Props, Refs> {
   static componentName = 'ChatHeader';
   protected template = template;
@@ -24,32 +24,46 @@ export class ChatHeader extends Block<Props, Refs> {
     }
   };
 
-  constructor(props: Props) {
-    super({
-      ...props,
-      // внутренние свойства
-      onClickMenu: (id: number) => this.onClickMenu(id),
-      onUserAdd: () => this.onUserAdd(),
-    });
+  private menu = [
+    {
+      icon: plus,
+      text: 'Добавить пользователя',
+      onClick: { onSubmit: this.onUserAdd.bind(this), dialogTitle: 'Добавить пользователя', text: 'Добавить' }
+    },
+    {
+      icon: cross,
+      text: 'Удалить пользователя',
+      onClick: { onSubmit: this.onUserRemove.bind(this), dialogTitle: 'Удалить пользователя', text: 'Удалить' }
+    },
+  ];
+
+  protected override customProps() {
+    return {
+      ...super.customProps(),
+      onClickMenu: (id: number) => this.setProps({ menu: undefined, ...this.menu[id].onClick }),
+      name: () => this.props.store.chats?.filter(chat => chat.id == this.props.store.currentChat)[0]?.name,
+    };
   }
 
   private showMenu(e: Event) {
     e.stopPropagation();
-    this.setProps({
-      menu: [
-        { icon: plus, text: 'Добавить пользователя' },
-        { icon: cross, text: 'Удалить пользователя' },
-      ]
-    });
+    this.setProps({ menu: this.menu });
   }
 
-  private onClickMenu(id: number) {
-    void(id);
-    this.setProps({ menu: undefined, useradd: true });
+  private closeMenu() {
+    this.setProps({ menu: undefined, dialogTitle: undefined });
   }
 
-  private onUserAdd() {
-    this.setProps({ menu: undefined, useradd: false });
+  private onUserAdd({ value }: ({ value: string })) {
+    this.props.store.reducers.addUser(value).catch(e => {
+      console.error(e);
+    }).finally(() => this.closeMenu());
+  }
+
+  private onUserRemove({ value }: ({ value: string })) {
+    this.props.store.reducers.removeUser(value).catch(e => {
+      console.error(e);
+    }).finally(() => this.closeMenu());
   }
 
   protected override componentDidMount(): void {
