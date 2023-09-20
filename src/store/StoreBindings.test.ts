@@ -1,7 +1,7 @@
 import { expect, use } from 'chai';
 import * as sinonChai from 'sinon-chai';
 import { createSandbox } from 'sinon';
-import { Block } from './Block';
+import { Block } from '../utils/Block';
 import { StoreBindings } from './StoreBindings';
 
 type StoreInterface = { userId?: number, otherId?: number };
