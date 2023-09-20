@@ -28,23 +28,23 @@ jobs:
     - name: Install testing libs
       uses: mig4/setup-bats@v1
     - name: Get testing lib
-      run: set -eu && git clone https://github.com/deadem/tests-second-floor.git /tmp/tests-second-floor
+      run: set -eu && git clone https://github.com/deadem/tests-middle-frontend.git /tmp/tests-middle-frontend
 
     - name: Run tests (sprint_1)
       if: ${{github.head_ref >= 'sprint_1'}}
-      run: bats --formatter pretty /tmp/tests-second-floor/tests/sprint_1.bats
+      run: bats --formatter pretty /tmp/tests-middle-frontend/tests/sprint_1.bats
 
     - name: Run tests (sprint_2)
       if: ${{github.head_ref >= 'sprint_2'}}
-      run: bats --formatter pretty /tmp/tests-second-floor/tests/sprint_2.bats
+      run: bats --formatter pretty /tmp/tests-middle-frontend/tests/sprint_2.bats
 
     - name: Run tests (sprint_3)
       if: ${{github.head_ref >= 'sprint_3'}}
-      run: bats --formatter pretty /tmp/tests-second-floor/tests/sprint_3.bats
+      run: bats --formatter pretty /tmp/tests-middle-frontend/tests/sprint_3.bats
 
     - name: Run tests (sprint_4)
       if: ${{github.head_ref >= 'sprint_4'}}
-      run: bats --formatter pretty /tmp/tests-second-floor/tests/sprint_4.bats
+      run: bats --formatter pretty /tmp/tests-middle-frontend/tests/sprint_4.bats
 
     - name: Run tests (server)
-      run: bats --formatter pretty /tmp/tests-second-floor/tests/node_build.bats
+      run: bats --formatter pretty /tmp/tests-middle-frontend/tests/node_build.bats
