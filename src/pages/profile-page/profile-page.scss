@@ -1,4 +1,4 @@
-@import '../../assets/variables';
+@import '../../variables';
 
 .profile-page {
   display: flex;
@@ -32,6 +32,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &__content-fields {
+    height: 490px;
+  }
+
+  &__error {
+    margin-top: 24px;
+    font: $font-regular;
+    text-align: center;
   }
 
   &__footer {

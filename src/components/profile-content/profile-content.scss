@@ -1,14 +1,16 @@
-@import '../../assets/variables';
+@import '../../variables';
 
 .profile-content {
   width: 510px;
-  height: 490px;
 
   &__avatar {
     margin: 0 auto;
     height: 130px;
     width: 130px;
     background: $gray-light-color;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     border-radius: 50%;
     position: relative;
 
@@ -27,7 +29,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.5); // приглушаем цвет оригинального аватара
+        background: #00000080; // приглушаем цвет оригинального аватара
         border-radius: 50%;
         cursor: pointer;
       }
@@ -47,8 +49,6 @@
 
   &__field {
     $this: &;
-
-    flex: 1;
 
     + #{$this} {
       border-top: 1px solid $divider-line-color;

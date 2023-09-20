@@ -1,11 +1,11 @@
 <div class="chat-header{{#if className}} {{ className }}{{/if}}">
   <div class="chat-header__avatar"></div>
   <div class="chat-header__name">{{ name }}</div>
-  <div class="chat-header__menu-button" page="chat-menu-user">&vellip;</div>
+  <div class="chat-header__menu-button" ref="button">&vellip;</div>
   {{#if menu}}
-    {{> Menu className="chat-header__menu" menu=(chat-header-menu) }}
+    {{{ Menu className="chat-header__menu" menu=menu onClick=onClickMenu }}}
+  {{/if}}
+  {{#if dialogTitle}}
+    {{{ DialogInput onSubmit=onSubmit title=dialogTitle inputTitle="Логин" actionText=text }}}
   {{/if}}
 </div>
-{{#if useradd}}
-  {{> UserAdd }}
-{{/if}}

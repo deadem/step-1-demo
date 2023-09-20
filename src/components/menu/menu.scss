@@ -1,13 +1,15 @@
-@import '../../assets/variables';
+@import '../../variables';
 
 .menu {
   background: $menu-bgcolor;
   box-shadow: $menu-shadow;
   border-radius: 12px;
   padding: 15px;
+  z-index: 1;
 
   &__item {
     $this: &;
+
     display: flex;
     align-items: center;
     font: $menu-font;

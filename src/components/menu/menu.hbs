@@ -1,6 +1,6 @@
 <div class="menu{{#if className}} {{className}}{{/if}}">
   {{#each menu}}
-    <div class="menu__item" page="{{this.page}}">
+    <div class="menu__item" data-menuid="{{@index}}">
       {{#if this.icon}}<div class="menu__item-icon"><img class="menu__item-icon-image" src="{{this.icon}}"></div>{{/if}}
       {{this.text}}
     </div>

@@ -1,18 +1,27 @@
 {{#> Dialog }}
-  <form class="registration-page">
+  <form class="registration-page" ref="form">
     <div class="registration-page__content">
-      {{> PageTitle title="Регистрация" }}
-      {{> InputField className="registration-page__input" title="Почта" name="email" }}
-      {{> InputField className="registration-page__input" title="Логин" name="login" }}
-      {{> InputField className="registration-page__input" title="Имя" name="first_name" }}
-      {{> InputField className="registration-page__input" title="Фамилия" name="second_name" }}
-      {{> InputField className="registration-page__input" title="Телефон" name="phone" }}
-      {{> InputField className="registration-page__input" title="Пароль" type="password" name="password" }}
-      {{> InputField className="registration-page__input" title="Пароль (ещё раз)" type="password" name="password_copy" }}
+      {{{ PageTitle title="Регистрация" }}}
+      {{{ InputField className="registration-page__input" title="Почта" name="email"
+        ref="email" validate=validate.email }}}
+      {{{ InputField className="registration-page__input" title="Логин" name="login"
+        ref="login" validate=validate.login }}}
+      {{{ InputField className="registration-page__input" title="Имя" name="first_name"
+        ref="name" validate=validate.name }}}
+      {{{ InputField className="registration-page__input" title="Фамилия" name="second_name"
+        ref="surname" validate=validate.surname }}}
+      {{{ InputField className="registration-page__input" title="Телефон" name="phone"
+        ref="phone" validate=validate.phone }}}
+      {{{ InputField className="registration-page__input" title="Пароль" type="password" name="password"
+        ref="password" validate=validate.password }}}
+      {{{ InputField className="registration-page__input" title="Пароль (ещё раз)" type="password" name="password_copy"
+        ref="passwordCopy" validate=validatePasswordCopy }}}
+
+      {{{ ErrorLine className="registration-page__error" ref="errorLine" }}}
     </div>
     <div class="registration-page__footer">
-      {{> Button text="Зарегистрироваться" page="chat" }}
-      {{> Link text="Войти" page="login" }}
+      {{{ Button text="Зарегистрироваться" page="chat" }}}
+      {{{ Link text="Войти" page="login" onClick=navigateTo.login }}}
     </div>
   </form>
 {{/ Dialog }}

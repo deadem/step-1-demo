@@ -1,7 +1,8 @@
 <div class="profile-field{{#if className}} {{className}}{{/if}}">
+  {{{ ErrorLine className="profile-field__error" error=error ref="errorLine" }}}
   <div class="profile-field__name">{{title}}</div>
   {{#if edit}}
-    {{> Input value=value name=name}}
+    {{{ Input value=value name=name type=type title=title className='profile-field__input' alignRight=alignRight onFocus=onFocus onBlur=onBlur ref="input" }}}
   {{else}}
     <div class="profile-field__value">{{value}}</div>
   {{/if}}

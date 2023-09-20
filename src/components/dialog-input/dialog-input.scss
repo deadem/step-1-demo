@@ -1,0 +1,18 @@
+@import '../../variables';
+
+.dialog-input {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font: $dialog-modal-title;
+    color: $title-color;
+  }
+
+  &__input {
+    width: 100%;
+    margin: 40px 0 45px;
+  }
+}

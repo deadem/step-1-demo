@@ -1,5 +1,5 @@
 @import './assets/fonts';
-@import './assets/variables';
+@import './variables';
 
 html, body {
   // Развернём html и body на всю высоту экрана
@@ -20,6 +20,7 @@ body {
 a {
   color: $link-color;
   text-decoration: none;
+
   &:hover {
     text-decoration: underline;
   }

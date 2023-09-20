@@ -1,0 +1,29 @@
+@import '../../variables';
+
+.dialog-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  inset: 0;
+  background: $dialog-modal-overlay-bgcolor;
+  z-index: 1;
+
+  &__main {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    background: $text-bgcolor;
+    padding: 40px 30px;
+    box-shadow: $dialog-modal-content-shadow;
+    border-radius: 12px;
+  }
+}

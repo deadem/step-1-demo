@@ -1,5 +1,5 @@
 <div class="input{{#if className}} {{className}}{{/if}}">
   <input
-    class="input__element{{#if align-right}} input__element--align-right{{/if}}"
-    type="{{ type }}" title="{{ title }}" name="{{ name }}" value="{{value}}">
+    class="input__element{{#if alignRight}} input__element--align-right{{/if}}{{#if error}} input__element--error{{/if}}"
+    type="{{ type }}" title="{{ title }}" name="{{ name }}" value="{{ value }}" ref="input">
 </div>

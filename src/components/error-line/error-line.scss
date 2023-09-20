@@ -1,0 +1,11 @@
+@import '../../variables';
+
+.error-line {
+  display: none;
+
+  &--visible {
+    display: block;
+    font: $font-micro;
+    color: $text-red;
+  }
+}

@@ -1,4 +1,4 @@
-@import '../../assets/variables';
+@import '../../variables';
 
 .upload-file {
   width: 280px;
@@ -14,16 +14,22 @@
   &__link {
     position: relative;
     display: inline-block;
-    margin: 40px 0 45px;
+    margin: 40px 0 25px;
     overflow: hidden;
   }
 
   &__element {
     cursor: pointer;
     position: absolute;
-    // подставим снизу плашки с текстом контрол выбора файла
-    font-size: 100px; // заведомо бОльший размер, чтобы в область видимости не попал текст
+
+    // Подставим снизу плашки с текстом контрол выбора файла.
+    // Зададим заведомо бОльший размер, чтобы в область видимости не попал текст.
+    font-size: 100px;
     direction: rtl;
+  }
+
+  &__error {
+    height: 45px;
   }
 
   &__link-text {

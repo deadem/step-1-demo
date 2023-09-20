@@ -1,14 +1,24 @@
+@import '../../variables';
+
 .registration-page {
   width: 280px;
-  height: 555px;
+  min-height: 555px;
   display: flex;
   flex-direction: column;
 
   &__content {
     flex: 1;
+    padding-bottom: 24px;
   }
 
   &__input {
     margin-top: 16px;
+  }
+
+  &__error {
+    color: $text-red;
+    margin-top: 24px;
+    text-align: center;
+    font: $font-regular;
   }
 }

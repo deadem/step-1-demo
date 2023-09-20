@@ -1,0 +1,7 @@
+{{#> DialogModal }}
+  <form class="dialog-input" ref="form">
+    <div class="dialog-input__title">{{ title }}</div>
+    {{{ InputField className="dialog-input__input" title=inputTitle value=value ref="input" }}}
+    {{{ Button text=actionText }}}
+  </form>
+{{/DialogModal }}

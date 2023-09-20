@@ -1,0 +1,8 @@
+@import '../../variables';
+
+.dialog {
+  background: $dialog-bgcolor;
+  box-shadow: $dialog-shadow;
+  border-radius: 12px;
+  padding: 30px;
+}

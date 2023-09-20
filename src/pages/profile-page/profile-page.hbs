@@ -1,19 +1,22 @@
 <div class="profile-page">
   <div class="profile-page__left">
-    <button class="profile-page__left-button" title="К чатам" page="chat"></button>
+    <button class="profile-page__left-button" title="К чатам" ref="chatLink"></button>
   </div>
   <div class="profile-page__center">
-    <div class="profile-page__content">
-      {{> ProfileContent }}
+    <form class="profile-page__content" ref="form">
+      <div class="profile-page__content-fields">
+        {{{ ProfileContent edit=edit password=password ref="fields" }}}
+        {{{ ErrorLine className="profile-page__error" ref="errorLine" }}}
+      </div>
       <div class="profile-page__footer">
         {{#if edit}}
-          {{> Button text="Сохранить" page="profile" className="profile-page__button-save" }}
+          {{{ Button text="Сохранить" page="profile" className="profile-page__button-save" ref="save" }}}
         {{else}}
-          {{> ProfileLink className="profile-page__field" name="Изменить данные" page="profile-edit"}}
-          {{> ProfileLink className="profile-page__field" name="Изменить пароль" page="profile-edit-password"}}
-          {{> ProfileLink className="profile-page__field" name="Выйти" page="login" color="red"}}
+          {{{ ProfileLink className="profile-page__field" name="Изменить данные" ref="edit" }}}
+          {{{ ProfileLink className="profile-page__field" name="Изменить пароль" ref="editPassword"}}}
+          {{{ ProfileLink className="profile-page__field" name="Выйти" color="red" ref="logout" }}}
         {{/if}}
       </div>
-    </div>
+    </form>
   </div>
 </div>

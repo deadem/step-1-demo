@@ -1,4 +1,4 @@
-@import '../../assets/variables';
+@import '../../variables';
 
 .profile-link {
   display: flex;
@@ -10,6 +10,7 @@
   &__name {
     color: $link-color;
     text-decoration: none;
+    cursor: pointer;
 
     &--red {
       color: $text-red;
