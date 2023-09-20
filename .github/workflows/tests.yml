@@ -28,7 +28,7 @@ jobs:
     - name: Install testing libs
       uses: mig4/setup-bats@v1
     - name: Get testing lib
-      run: set -eu && git clone https://github.com/deadem/tests-second-floor.git /tmp/tests-second-floor
+      run: set -eu && git clone https://github.com/deadem/tests-middle-frontend.git /tmp/tests-second-floor
 
     - name: Run tests (sprint_1)
       if: ${{github.head_ref >= 'sprint_1'}}
